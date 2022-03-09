@@ -1,9 +1,9 @@
 {% extends 'customer/base.html' %}
 {% block content %}
-<div class="container mb-5">
-    <div class="row justify-content-center mt-1">
-        <div class="col-md-12 col-sm-12 p-4">
-            <form method="POST">
+    <div class="container mb-5">
+        <div class="row justify-content-center mt-1">
+            <div class="col-md-12 col-sm-12 p-4">
+                <form method="POST">
                     {% csrf_token %}
                     <div class="pt-5">
                         {% for app in appetizers %}
@@ -25,7 +25,7 @@
                             </div>
                         {% endfor %}
                     </div>
-            <hr>
+                    <hr>
                     <div class="pt-5">
                         {% for enter in entries %}
                             <div class="row">
@@ -46,7 +46,7 @@
                             </div>
                         {% endfor %}
                     </div>
-            <hr>
+                    <hr>
 
                     <div class="pt-5">
                         {% for desert in desserts %}
@@ -68,7 +68,7 @@
                             </div>
                         {% endfor %}
                     </div>
-            <hr>
+                    <hr>
 
                     <div class="pt-5">
                         {% for drink in drinks %}
@@ -90,9 +90,72 @@
                             </div>
                         {% endfor %}
                     </div>
-                        <hr>
+                    <hr>
 
-                    <button class="btn btn-dark mt-5">Place your order!</button>
+                    <div class="form-group pt-3">
+                        <label for="name">Full name</label>
+                        <input class="form-control" type="text" placeholder="Your name" name="name" required>
+                    </div>
+                    <div class="form-group pt-3">
+                        <label for="email">Email</label>
+                        <input class="form-control" type="text" placeholder="Your email" name="email" required>
+                    </div>
+
+
+                    <div class="form-group pt-3">
+                        <label for="city">Full name</label>
+                        <input class="form-control" type="text" placeholder="Your city" name="city" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group pt-3">
+                                <label for="street">street</label>
+                                <input class="form-control" type="text" placeholder="Your street" name="street"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group pt-3">
+                                <label for="state">state</label>
+                                <input class="form-control" type="text" placeholder="Your state" name="state">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group pt-3">
+                                <label for="zip_code">Zip code</label>
+                                <input class="form-control" type="text" placeholder="Your zip_code" name="zip_code">
+                            </div>
+                        </div>
+                    </div>
+
+                    {#                    <button class="btn btn-dark mt-2">Place your order!</button>#}
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#submitModal">
+                        Submit order
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="submitModal" tabindex="-1" role="dialog"
+                         aria-labelledby="submitModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="submitModalLabel">Submit your order</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light" data-dismiss="modal">Go back</button>
+                                    <button type="submit" class="btn btn-dark">Place Order</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!--End modal-->
                 </form>
             </div>
         </div>
