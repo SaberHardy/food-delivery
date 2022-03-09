@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.shortcuts import render
 from django.views import View
 
@@ -67,6 +68,17 @@ class Order(View):
                         zip_code=zip_code,
                         )
         order.items.add(*item_ids)
+
+        body = ('Thank you for your order, your food is being delivered soon\n'
+                f'your total: {price}\n'
+                'Thank you for your order')
+
+        send_mail(
+            'Thank you for your order!',
+            body,
+            'example@gmail.com',
+            [email],
+            fail_silently=False)
 
         context = {
             'items': order_items['items'],
