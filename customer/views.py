@@ -42,17 +42,18 @@ class Order(View):
         }
         items = request.POST.getlist('items')
         for item in items:
-            menu_item = MenuItem.objects.get(pk__contains=int(item))
+            items_selected_by_user = MenuItem.objects.get(pk__contains=int(item))
+
             item_data = {
-                'id': menu_item.pk,
-                'name': menu_item.name,
-                'price': menu_item.price,
+                'id': items_selected_by_user.pk,
+                'name': items_selected_by_user.name,
+                'price': items_selected_by_user.price,
             }
 
             order_items['items'].append(item_data)
 
-            price = 0
-            item_ids = []
+        price = 0
+        item_ids = []
 
         for item2 in order_items['items']:
             price += item2['price']
