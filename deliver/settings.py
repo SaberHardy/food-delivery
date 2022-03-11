@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    'crispy_forms',
 ]
 
 SITE_ID = 1
@@ -130,4 +132,9 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGOUT_REDIRECT_URL = 'index'
+
 ACCOUNT_ADAPTER = 'restaurant.account_adapter.NoNewUsersAccountAdapter'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
