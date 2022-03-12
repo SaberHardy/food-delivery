@@ -1,8 +1,10 @@
 import json
 
 from django.core.mail import send_mail
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import DetailView
 
 from customer.models import MenuItem, OrderModel
 
@@ -115,3 +117,27 @@ class OrderConfirmation(View):
 class OrderPayConfirmation(View):
     def get(self, request, pk, *args, **kwargs):
         return render(request, 'customer/order_pay_confirmation.html')
+
+
+class Menu(View):
+    def get(self, request, *args, **kwargs):
+        menu_items = MenuItem.objects.all()
+        context = {
+            'menu_items': menu_items
+        }
+        return render(request, 'customer/menu.html', context)
+
+
+class MenuSearch(View):
+    def get(self, request, *args, **kwargs):
+        query = request.GET.get('q')
+        menu_items = MenuItem.objects.filter(
+            Q(name__icontains=query) |
+            Q(price__icontains=query) |
+            Q(description__icontains=query) |
+            Q(name__icontains=query))
+
+        context = {
+            'menu_items': menu_items
+        }
+        return render(request, 'customer/menu.html', context)

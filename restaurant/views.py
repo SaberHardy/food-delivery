@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from django.utils.timezone import datetime
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.views.generic import DetailView
 
 from customer.models import OrderModel
 
